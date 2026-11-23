@@ -16,6 +16,10 @@ PITCH = (
 
 
 def main() -> None:
+    if not PITCH.strip():
+        raise SystemExit("Invalid pitch: pitch must be non-empty.")
+    if "\n" in PITCH or "\r" in PITCH:
+        raise SystemExit("Invalid pitch: pitch must be a single line with no newline characters.")
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
     os.makedirs(out_dir, exist_ok=True)
     path = os.path.join(out_dir, "entry.txt")
